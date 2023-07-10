@@ -7,7 +7,6 @@ export const App = () => {
   const [creditPercent, setCreditPercent] = useState(17);
   const [profitFromCredit, setProfitFromCredit] = useState(0);
   const [period, setPeriod] = useState(0);
-  // const [inflation, setInflation] = useState(0);
 
   const [resultWithCredit, setResultWithCredit] = useState("");
   const [minimalPeriodToCoverCredit, setMinimalPeriodToCoverCredit] =
@@ -32,9 +31,14 @@ export const App = () => {
         `Kreditni to'lanmagan va ${formatNumber(leftAmount)} so'm qoldi!.`
       );
     }
-    setMinimalPeriodToCoverCredit(
-      `Kreditni to'lash uchun kerak bo'lgan minimal muddat: ${minPeriodCredit} oy!`
-    );
+    if (minPeriodCredit === 1000) {
+      setMinimalPeriodToCoverCredit("Siz kreditni yopolmaysiz!");
+    } else {
+      setMinimalPeriodToCoverCredit(
+        `Kreditni to'lash uchun kerak bo'lgan minimal muddat: ${minPeriodCredit} oy!`
+      );
+    }
+
     setTimeWithoutCredit(
       `Maqsadga kreditsiz yetishish mumkin bo'lgan minimal muddat: ${minPeriodWithoutCredit} oy!`
     );
@@ -52,6 +56,9 @@ export const App = () => {
     while (leftAmount > 0) {
       leftAmount = +leftAmount + +(leftAmount * creditPercent) / 1200;
       leftAmount = leftAmount - monthlySalary - profitFromCredit;
+      if (month > 1000) {
+        return 1000;
+      }
       month++;
     }
     return month;
@@ -116,15 +123,6 @@ export const App = () => {
           onChange={(e) => setPeriod(e.target.value)}
         />
       </div>
-      {/* <div className={classes.inputBox}>
-        <label className={classes.label}>Inflyatsiya (foizda)</label>
-        <input
-          type="number"
-          className={classes.input}
-          value={inflation}
-          onChange={(e) => setInflation(e.target.value)}
-        />
-      </div> */}
       <div>
         <button className={classes.button} onClick={calculate}>
           Hisoblash
