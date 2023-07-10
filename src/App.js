@@ -7,7 +7,7 @@ export const App = () => {
   const [creditPercent, setCreditPercent] = useState(17);
   const [profitFromCredit, setProfitFromCredit] = useState(0);
   const [period, setPeriod] = useState(0);
-  const [inflation, setInflation] = useState(0);
+  // const [inflation, setInflation] = useState(0);
 
   const [resultWithCredit, setResultWithCredit] = useState("");
   const [minimalPeriodToCoverCredit, setMinimalPeriodToCoverCredit] =
