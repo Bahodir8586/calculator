@@ -7,6 +7,7 @@ export const App = () => {
   const [creditPercent, setCreditPercent] = useState(17);
   const [profitFromCredit, setProfitFromCredit] = useState(0);
   const [period, setPeriod] = useState(0);
+  const [inflation, setInflation] = useState(0);
 
   const [resultWithCredit, setResultWithCredit] = useState("");
   const [minimalPeriodToCoverCredit, setMinimalPeriodToCoverCredit] =
@@ -69,6 +70,7 @@ export const App = () => {
 
   return (
     <div className={classes.app}>
+      <p>BIZ KREDITGA TARG'IB QILMAYMIZ</p>
       <div className={classes.inputBox}>
         <label className={classes.label}>Oylik to'planadigan daromad</label>
         <input
@@ -114,6 +116,15 @@ export const App = () => {
           onChange={(e) => setPeriod(e.target.value)}
         />
       </div>
+      {/* <div className={classes.inputBox}>
+        <label className={classes.label}>Inflyatsiya (foizda)</label>
+        <input
+          type="number"
+          className={classes.input}
+          value={inflation}
+          onChange={(e) => setInflation(e.target.value)}
+        />
+      </div> */}
       <div>
         <button className={classes.button} onClick={calculate}>
           Hisoblash
